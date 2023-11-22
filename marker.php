@@ -1,7 +1,7 @@
 <?php
 $colors = ['#43002C','#B500FF','#FF029D','#006401','#BDD393','#91D0CB','#FF0000','#007DB5','#7A4782','#004754','#7544B1','#FFE502','#C28C9F','#00AE7E','#FFDB66','#01FFFE','#E56FFE','#6B6882','#010067','#263400','#FF6E41','#BDC6FF','#0000FF','#788231','#FF0056','#FF00F6','#7E2DD2','#0076FF','#FFB167','#FE8900','#95003A','#A5FFD2','#85A900','#5FAD4E','#E85EBE','#BB8800','#D5FF00','#BE9970','#FF937E','#620E00','#968AE8','#FFA6FE','#00FF00','#6A826C','#001544','#01D0FF','#008F9C','#FF74A3','#9E008E','#A42400','#005F39','#00FFC6','#FFEEE8'];
-$resellerid = intval(isset($_GET['r']) ? $_GET['r'] : '0');
-$color = $colors[$resellerid % sizeof($colors)];
+$partnerid = intval(isset($_GET['r']) ? $_GET['r'] : '0');
+$color = $colors[$partnerid % sizeof($colors)];
 header('Content-Type: image/svg+xml');
 header('Cache-Control: private, max-age=31536000');
 ?>

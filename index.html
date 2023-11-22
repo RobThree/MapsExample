@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Klanten</title>
+
+    <script>
+      (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+        key: "---APIKEYHERE---",
+        v: "weekly",
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="jquery.multiselect.min.js"></script>
+    <style type="text/css">
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            font-size: 10pt;
+        }
+
+        #status {
+            position: absolute;
+            background-color: #fff;
+            bottom: 10px;
+            left: 10px;
+            padding: 3px;
+            border: 1px solid #aaa;
+        }
+
+        #filterform {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 300px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ms-options-wrap,
+        .ms-options-wrap * {
+            box-sizing: border-box;
+        }
+
+            .ms-options-wrap > button:focus,
+            .ms-options-wrap > button {
+                position: relative;
+                width: 100%;
+                text-align: left;
+                border: 1px solid #aaa;
+                background-color: #fff;
+                padding: 5px 20px 5px 5px;
+                margin-top: 1px;
+                font-size: 13px;
+                color: #aaa;
+                outline: none;
+                white-space: nowrap;
+            }
+
+                .ms-options-wrap > button:after {
+                    content: ' ';
+                    height: 0;
+                    position: absolute;
+                    top: 50%;
+                    right: 5px;
+                    width: 0;
+                    border: 6px solid rgba(0, 0, 0, 0);
+                    border-top-color: #999;
+                    margin-top: -3px;
+                }
+
+            .ms-options-wrap > .ms-options {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                margin-top: 1px;
+                margin-bottom: 20px;
+                background: white;
+                z-index: 2000;
+                border: 1px solid #aaa;
+            }
+
+                .ms-options-wrap > .ms-options > .ms-search input {
+                    width: 100%;
+                    padding: 4px 5px;
+                    border: none;
+                    border-bottom: 1px groove;
+                    outline: none;
+                }
+
+                .ms-options-wrap > .ms-options .ms-selectall {
+                    display: inline-block;
+                    font-size: .9em;
+                    text-transform: lowercase;
+                    text-decoration: none;
+                }
+
+                    .ms-options-wrap > .ms-options .ms-selectall:hover {
+                        text-decoration: underline;
+                    }
+
+                .ms-options-wrap > .ms-options > .ms-selectall.global {
+                    margin: 4px 5px;
+                }
+
+                .ms-options-wrap > .ms-options > ul,
+                .ms-options-wrap > .ms-options > ul > li.optgroup ul {
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                    .ms-options-wrap > .ms-options > ul > li.optgroup {
+                        padding: 5px;
+                    }
+
+                        .ms-options-wrap > .ms-options > ul > li.optgroup + li.optgroup {
+                            border-top: 1px solid #aaa;
+                        }
+
+                        .ms-options-wrap > .ms-options > ul > li.optgroup .label {
+                            display: block;
+                            padding: 5px 0 0 0;
+                            font-weight: bold;
+                        }
+
+                    .ms-options-wrap > .ms-options > ul label {
+                        position: relative;
+                        display: inline-block;
+                        width: 100%;
+                        padding: 4px;
+                        margin: 1px 0;
+                        border: 1px dotted transparent;
+                    }
+
+                        .ms-options-wrap > .ms-options > ul label.focused,
+                        .ms-options-wrap > .ms-options > ul label:hover {
+                            background-color: #efefef;
+                            border-color: #999;
+                        }
+
+                    .ms-options-wrap > .ms-options > ul li.selected label {
+                        background-color: #efefef;
+                        border-color: transparent;
+                    }
+
+                    .ms-options-wrap > .ms-options > ul input[type="checkbox"] {
+                        margin: 0 5px 0 0;
+                        position: absolute;
+                        left: 4px;
+                        top: 7px;
+                    }
+
+                .ms-options-wrap > .ms-options.hide-checkbox > ul input[type="checkbox"] {
+                    position: absolute !important;
+                    height: 1px;
+                    width: 1px;
+                    overflow: hidden;
+                    clip: rect(1px 1px 1px 1px);
+                    clip: rect(1px, 1px, 1px, 1px);
+                }
+    </style>
+</head>
+
+<body>
+    <div id="map-canvas"></div>
+    <p id="status">-</p>
+    <div id="filterform">
+        <select multiple="multiple" id="partnersdd"></select>
+    </div>
+    <script>
+        var customers, partner;
+
+        var gmarkers = [];
+        var infowindow;
+        let map;
+        var markercolors = ['blue','brown','darkgreen','green','orange','paleblue','pink','purple','red','yellow'];
+
+
+        async function initMap() {
+          const { Map } = await google.maps.importLibrary("maps");
+
+          map = new Map(document.getElementById("map-canvas"), {
+            center: { lat: 52.0, lng: 5.75 },
+            zoom: 8,
+            mapTypeId: 'roadmap',
+          });
+
+          infowindow = new google.maps.InfoWindow({
+            maxWidth: 300,
+            disableAutoPan: false
+          });
+
+          showCustomers(customers);
+        }
+
+        function getMarker(partnerId, customerId) {
+            return 'marker.php?r=' + encodeURIComponent(partnerId);
+        }
+        
+        function showCustomers(selection) {
+            // Clear all current markers
+            for (i = 0; i < gmarkers.length; i++)
+                gmarkers[i].setMap(null);
+            gmarkers = [];
+
+            // Loop through our selection and create a marker for each customer
+            var bounds = new google.maps.LatLngBounds();
+            for (var k in selection) {
+                var position = new google.maps.LatLng(selection[k].Location.Lat, selection[k].Location.Lng);
+                bounds.extend(position);
+
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    customer: selection[k],
+                    partner: partners[selection[k].Partner_Id],
+                    icon: getMarker(partners[selection[k].Partner_Id].Id, selection[k].Id)
+                });
+
+                gmarkers.push(marker);
+                google.maps.event.addListener(marker, 'click', (function (marker) {
+                    return function () {
+                        var c = marker.customer;
+                        var r = marker.partner;
+                        
+                        infowindow.setContent('<strong>' + c.Name + '</strong><br>' + r.Name + '<br><br><a href="https://somecompany.com/customers/' + c.Id + '" target="_blank">Open in portal</a>');
+                        infowindow.open(map, marker);
+                    }
+                })(marker));
+            }
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+
+            // Update "status bar"
+            $('#status').text(gmarkers.length + " Klanten in selectie");
+        }
+
+        $(document).ready(function () {
+            // Load customers
+            $.get("customers.json", function (data) {
+                customers = data;
+
+                // Load partners
+                $.get("partners.json", function (data) {
+                    partners = data;   // Keep hashmap
+
+                    // Create array to sort
+                    sortedpartners = [];
+                    for (var i in partners)
+                        sortedpartners.push(partners[i]);
+                    sortedpartners.sort(function(a, b) { return a.Name.localeCompare(b.Name); });
+
+                    // Populate partners multiselect
+                    for (var r in sortedpartners) {
+                        $('#partnersdd').append($('<option>', {
+                            value: sortedpartners[r].Id,
+                            text: sortedpartners[r].Name
+                        }));
+                    }
+
+                    // Make partner multiselect into a dropdown
+                    $('#partnersdd').multiselect({
+                        columns: 1,
+                        texts: {
+                            placeholder: 'Selecteer Partner',
+                            selectedOptions: ' partners geselecteerd',
+                            noneSelected: 'Geen partners geselecteerd'
+                        },
+                        onControlClose: function () {
+                            // When partners dropdown closes we update the view
+                            var ddselection = ($('#partnersdd').val() || []).map(function (x) { return parseInt(x, 10); });
+                            var s = {};
+
+                            for (var k in customers) {
+                                if (ddselection.length == 0 || ddselection.indexOf(customers[k].Partner_Id) >= 0) {
+                                    s[k] = customers[k];
+                                }
+                            }
+
+                            // Update the view
+                            showCustomers(s, false);
+                        }
+                    });
+
+                    // Initialize view
+                    initMap();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{
+    "1": {
+        "Id": 1,
+        "Name": "Customer 1",
+        "Partner_Id": 1,
+        "ZipCode": "1234AB",
+        "HouseNr": "1",
+        "HouseNrExt": "",
+        "City": "Some City",
+        "Location": {
+            "Lat": 52.10738906,
+            "Lng": 6.00809357
+        }
+    },
+    "3": {
+        "Id": 3,
+        "Name": "Customer 2",
+        "Partner_Id": 2,
+        "ZipCode": "1234AB",
+        "HouseNr": "54",
+        "HouseNrExt": "",
+        "City": "Some City",
+        "Location": {
+            "Lat": 51.45914503,
+            "Lng": 3.90043665
+        }
+    },
+    "4": {
+        "Id": 4,
+        "Name": "Customer 3",
+        "Partner_Id": 3,
+        "ZipCode": "1234AB",
+        "HouseNr": "15",
+        "HouseNrExt": "",
+        "City": "Some City",
+        "Location": {
+            "Lat": 51.80483764,
+            "Lng": 6.42986576
+        }
+    },
+    "5": {
+        "Id": 5,
+        "Name": "Customer 4",
+        "Partner_Id": 1,
+        "ZipCode": "1234AB",
+        "HouseNr": "10",
+        "HouseNrExt": "b",
+        "City": "Some City",
+        "Location": {
+            "Lat": 52.59298831,
+            "Lng": 6.92984512
+        }
+    },
+    "14": {
+        "Id": 14,
+        "Name": "Customer 5",
+        "Partner_Id": 2,
+        "ZipCode": "1234AB",
+        "HouseNr": "160",
+        "HouseNrExt": "",
+        "City": "Some City",
+        "Location": {
+            "Lat": 51.72730205,
+            "Lng": 4.26767301
+        }
+    },
+    "16": {
+        "Id": 16,
+        "Name": "Customer 6",
+        "Partner_Id": 3,
+        "ZipCode": "1234AB",
+        "HouseNr": "43",
+        "HouseNrExt": "",
+        "City": "Some City",
+        "Location": {
+            "Lat": 51.52203263,
+            "Lng": 5.25342761
+        }
+    },
+    "17": {
+        "Id": 17,
+        "Name": "Customer 7",
+        "Partner_Id": 1,
+        "ZipCode": "1234AB",
+        "HouseNr": "126",
+        "HouseNrExt": "c",
+        "City": "Some City",
+        "Location": {
+            "Lat": 52.34779532,
+            "Lng": 5.58060583
+        }
+    }
+}

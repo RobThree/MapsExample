@@ -1,0 +1,44 @@
+{
+    "1": {
+        "AddressLine1": "Some street",
+        "Id": 1,
+        "Name": "Some company",
+        "Partner_Id": 0,
+        "ZipCode": "1234AA",
+        "HouseNr": "1",
+        "HouseNrExt": "",
+        "City": "Some City",
+        "Location": {
+            "Lat": 52.11751227,
+            "Lng": 5.29460956
+        }
+    },
+    "2": {
+        "AddressLine1": "Another street",
+        "Id": 2,
+        "Name": "Another company",
+        "Partner_Id": 0,
+        "ZipCode": "9876ZY",
+        "HouseNr": "999",
+        "HouseNrExt": "",
+        "City": "Another city",
+        "Location": {
+            "Lat": 51.49348216,
+            "Lng": 3.83365693
+        }
+    },
+    "3": {
+        "AddressLine1": "Another street",
+        "Id": 3,
+        "Name": "Yet another company",
+        "Partner_Id": 0,
+        "ZipCode": "5555YW",
+        "HouseNr": "465",
+        "HouseNrExt": "",
+        "City": "Yet another city",
+        "Location": {
+            "Lat": 5.9107229,
+            "Lng": 5.9107229
+        }
+    }
+}

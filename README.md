@@ -7,7 +7,7 @@ Note that this is old code that I dug up and quickly patched up to work in a mod
 
 * [Get yourself a Google API key](https://developers.google.com/maps/documentation/javascript/get-api-key) and make sure it is enabled/activated.
 * Put the API key in the [`index.html`](https://github.com/RobThree/MapsExample/blob/3a40d2d378f258ca448222b01f2104201fb471b6/index.html#L11) file as indicated.
-* The markers are 'dynamically generated' on-the-fly by PHP (see [`marker.php`](https://github.com/RobThree/MapsExample/blob/main/marker.php)) for each color. You will need to use a webserver configured to run PHP or change the [`getMarker`](https://github.com/RobThree/MapsExample/blob/3a40d2d378f258ca448222b01f2104201fb471b6/index.html#L207) method to something of your liking (which could be anything, like static images (`.png`, `.svg`, etc.).
+* The markers are based on the partner-id; you will want to change the [`getMarker`](https://github.com/RobThree/MapsExample/blob/3a40d2d378f258ca448222b01f2104201fb471b6/index.html#L207) method to something of your liking
 
 ## Known bugs / issues
 
